@@ -37,6 +37,7 @@ public class PerfDataRecorder {
 	private static final Logger PERF = RangerPerfTracer.getPerfLogger(PerfDataRecorder.class);
 
 	private static volatile PerfDataRecorder instance;
+	// record performance statistics of some function marked by certain tag.
 	private Map<String, PerfStatistic> perfStatistics = new HashMap<>();
 
 	public static void initialize(List<String> names) {

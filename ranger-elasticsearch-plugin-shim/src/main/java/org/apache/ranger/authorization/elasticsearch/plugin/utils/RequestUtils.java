@@ -21,10 +21,13 @@ import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.elasticsearch.action.ActionRequest;
+import org.elasticsearch.action.ActionRequestValidationException;
 import org.elasticsearch.action.DocWriteRequest;
 import org.elasticsearch.action.admin.cluster.shards.ClusterSearchShardsRequest;
 import org.elasticsearch.action.admin.indices.alias.IndicesAliasesRequest;
@@ -77,6 +80,24 @@ import org.elasticsearch.rest.RestRequest;
 
 public class RequestUtils {
 	public static final String CLIENT_IP_ADDRESS = "ClientIPAddress";
+
+	// 
+	// public static final Map<Class<? extends ActionRequest>, Object> actionRequestMap = new HashMap<>();
+
+	// public enum IndexType {
+	// 	INDEX, INDICES, NAMES
+	// }
+
+	// public <T> List<String> extractIndex(T t, ActionRequest request) {
+	// 	return ((T) request).index();
+	// }
+
+	// static {
+	// 	// Class -> type
+	// 	actionRequestMap.put(SingleShardRequest.class, IndexType.INDEX);
+	// 	actionRequestMap.put(ReplicationRequest.class, IndexType.INDEX);
+	// 	// type -> handler
+	// }
 
 	public static String getClientIPAddress(RestRequest request) {
 		SocketAddress socketAddress = request.getHttpChannel().getRemoteAddress();

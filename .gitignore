@@ -17,3 +17,7 @@ winpkg/target
 **/dist
 **/apache_ranger.egg-info
 .python-version
+
+# vscode
+.project
+.vscode/

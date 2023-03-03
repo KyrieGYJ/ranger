@@ -228,7 +228,7 @@ public class RangerPolicyRepository {
             LOG.debug("RangerPolicyRepository : building policy-repository for service[" + serviceName + "], and zone:[" + zoneName + "] with auditMode[" + auditModeEnum + "]");
         }
 
-        init(options);
+        init(options); // TODO: 需要？
 
         if (StringUtils.isEmpty(zoneName)) {
             this.contextEnrichers = buildContextEnrichers(options);

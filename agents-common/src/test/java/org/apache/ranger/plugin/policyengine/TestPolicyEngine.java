@@ -573,6 +573,7 @@ public class TestPolicyEngine {
         setPluginConfig(pluginContext.getConfig(), ".audit.exclude.roles", testCase.auditExcludedRoles);
 
         // so that setSuperUsersAndGroups(), setAuditExcludedUsersGroupsRoles() will be called on the pluginConfig
+		// TODO: 这块看出pluginContext和RangerBasePlugin耦合了
         new RangerBasePlugin(pluginContext.getConfig());
 
         RangerPolicyEngineImpl policyEngine = new RangerPolicyEngineImpl(servicePolicies, pluginContext, roles);

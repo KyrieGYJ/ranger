@@ -21,6 +21,9 @@ package org.apache.ranger.plugin.util;
 
 import org.slf4j.Logger;
 
+/**
+ * Collect more detail, like invocation time, max time, min time.
+ */
 public class RangerPerfCollectorTracer extends RangerPerfTracer {
 	private final long   startTimeNanos;
 

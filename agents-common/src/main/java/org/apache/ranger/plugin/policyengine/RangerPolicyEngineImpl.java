@@ -62,6 +62,8 @@ import static org.apache.ranger.plugin.policyevaluator.RangerPolicyEvaluator.ACC
 public class RangerPolicyEngineImpl implements RangerPolicyEngine {
 	private static final Logger LOG = LoggerFactory.getLogger(RangerPolicyEngineImpl.class);
 
+	public static final String PLUGIN_CONFIG_SUFFIX_IN_PLACE_POLICY_UPDATES = ".supports.in.place.policy.updates";
+	public static final boolean PLUGIN_CONFIG_SUFFIX_IN_PLACE_POLICY_UPDATES_DEFAULT = false;
 	private static final Logger PERF_POLICYENGINE_REQUEST_LOG  = RangerPerfTracer.getPerfLogger("policyengine.request");
 	private static final Logger PERF_POLICYENGINE_AUDIT_LOG    = RangerPerfTracer.getPerfLogger("policyengine.audit");
 	private static final Logger PERF_POLICYENGINE_GET_ACLS_LOG = RangerPerfTracer.getPerfLogger("policyengine.getResourceACLs");
@@ -95,8 +97,11 @@ public class RangerPolicyEngineImpl implements RangerPolicyEngine {
 		Configuration config = pluginContext != null ? pluginContext.getConfig() : null;
 
 		if (config != null) {
-			boolean isDeltasSupported = config.getBoolean(pluginContext.getConfig().getPropertyPrefix() + RangerCommonConstants.PLUGIN_CONFIG_SUFFIX_POLICY_DELTA, RangerCommonConstants.PLUGIN_CONFIG_SUFFIX_POLICY_DELTA_DEFAULT);
-			isUseReadWriteLock = isDeltasSupported && config.getBoolean(pluginContext.getConfig().getPropertyPrefix() + RangerCommonConstants.PLUGIN_CONFIG_SUFFIX_IN_PLACE_POLICY_UPDATES, RangerCommonConstants.PLUGIN_CONFIG_SUFFIX_IN_PLACE_POLICY_UPDATES_DEFAULT);
+			boolean isDeltasSupported = config.getBoolean(pluginContext.getConfig().getPropertyPrefix() + 
+				RangerCommonConstants.PLUGIN_CONFIG_SUFFIX_POLICY_DELTA, RangerCommonConstants.PLUGIN_CONFIG_SUFFIX_POLICY_DELTA_DEFAULT);
+			// TODO: 这几个常量只有这里用了，应该放在当前这个类里面
+			isUseReadWriteLock = isDeltasSupported && config.getBoolean(pluginContext.getConfig().getPropertyPrefix() + 
+				PLUGIN_CONFIG_SUFFIX_IN_PLACE_POLICY_UPDATES, PLUGIN_CONFIG_SUFFIX_IN_PLACE_POLICY_UPDATES_DEFAULT);
 		} else {
 			isUseReadWriteLock = false;
 		}

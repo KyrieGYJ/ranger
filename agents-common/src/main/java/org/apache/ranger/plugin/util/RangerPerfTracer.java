@@ -45,6 +45,12 @@ public class RangerPerfTracer {
 		return logger.isDebugEnabled();
 	}
 
+	/**
+	 * get performance tracer
+	 * @param logger
+	 * @param tag tag which may contains data, e.g. tag(data)
+	 * @return
+	 */
 	public static RangerPerfTracer getPerfTracer(Logger logger, String tag) {
 		String data = "";
 		String realTag = "";
@@ -101,8 +107,13 @@ public class RangerPerfTracer {
 			logger.debug("[PERF] " + tag + data + ": " + elapsedTime);
 		}
 	}
+
 	public void logAlways() {
 		long elapsedTime = getElapsedTime();
 		logger.debug("[PERF] " + tag + data + ": " + elapsedTime);
+	}
+
+	public void logRuntimeMemory() {
+		
 	}
 }
